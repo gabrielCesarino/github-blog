@@ -9,4 +9,5 @@ export const defaultTheme = {
 	'base-profile': '#0b1b2b',
 	'base-background': '#071422',
 	'base-input': '#040f1a',
+	'base-brand': '#3294F8',
 } as const;
