@@ -1,9 +1,20 @@
-import { Container, Header, ProfileDetails, NameContainer, ProfileInfo } from './styles';
+import { 
+	Container,
+	Header, 
+	ProfileDetails, 
+	NameContainer, 
+	ProfileInfo, 
+	Content, 
+	PageTitle,
+	SearchForm,
+	PostsList
+} from './styles';
 import avatarImg from '../../assets/avatar.png';
 import githubIcon from '../../assets/github.svg';
 import socialIcon from '../../assets/social.svg';
 import buildIcon from '../../assets/build.svg';
 import redirectIcon from '../../assets/redirect.svg';
+import { PostItem } from '../../components/PostItem';
 
 export function Home() {
 	return (
@@ -39,6 +50,23 @@ export function Home() {
 					</ProfileInfo>
 				</ProfileDetails>
 			</Header>
+			<Content>
+				<PageTitle>
+					<strong>Publicações</strong>
+					<small>6 publicações</small>
+				</PageTitle>
+				<SearchForm>
+					<input type="text" placeholder='Buscar conteúdo'/>
+				</SearchForm>
+				<PostsList>
+					<PostItem />
+					<PostItem />
+					<PostItem />
+					<PostItem />
+				</PostsList>
+			</Content>
+
+
 		</Container>
 	);
 }

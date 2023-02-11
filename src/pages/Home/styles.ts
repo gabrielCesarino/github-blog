@@ -78,3 +78,47 @@ export const ProfileInfo = styled.div`
         line-height: 0;
     }
 `;
+
+export const Content = styled.main`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+`;
+
+export const PageTitle = styled.div`
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 4.5rem;
+    color: ${props => props.theme['base-subtitle']};
+
+    & > h1 {
+        font-size: 1.125rem;
+    }
+`;
+
+export const SearchForm = styled.form`
+    margin-top: 0.75rem;
+
+    input {
+        padding: 0.75rem;
+        width: 100%;
+        color: ${props => props.theme['base-label']};
+
+        background-color: ${props => props.theme['base-input']};
+        outline: none;
+        border: 1px solid ${props => props.theme['base-border']};
+        border-radius: 6px;
+
+        &::placeholder {
+            color: ${props => props.theme['base-label']};
+        }
+    }
+`;
+
+export const PostsList = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 3rem;
+    gap: 2rem;
+`;
