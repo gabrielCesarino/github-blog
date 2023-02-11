@@ -22,11 +22,14 @@ export const Header = styled.header`
     border-radius: 10px;
 
     & > img {
+        width: 9rem;
         border-radius: 8px;
     }
 `;
 
 export const ProfileDetails = styled.div`
+    flex: 1;
+
     & > p {
         display: block;
         margin-top: 0.5rem;
