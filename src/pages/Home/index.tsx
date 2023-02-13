@@ -18,6 +18,7 @@ import socialIcon from '../../assets/social.svg';
 import buildIcon from '../../assets/build.svg';
 import redirectIcon from '../../assets/redirect.svg';
 import { api } from '../../api/api';
+import { useForm } from 'react-hook-form';
 
 interface UserProps {
 	avatar_url: string,
@@ -33,6 +34,10 @@ interface RepoProps {
 	id: number,
 	title: string,
 	created_at: Date,
+}
+
+interface searchForm {
+	query: string,
 }
 
 export function Home() {
@@ -56,6 +61,18 @@ export function Home() {
 	
 	
 	console.log(repos);
+
+	const { register, reset, handleSubmit } = useForm<searchForm>();
+
+	async function handleSearchPost(data: searchForm) {
+		console.log(data.query);
+
+		const response = await api.get(`/search/issues?q=${data.query}repo:${username}/github-blog-posts`);
+		const repos = await response.data;
+		
+		setRepos(repos.items);
+		reset();
+	}
 
 	return (
 		<Container>
@@ -94,8 +111,8 @@ export function Home() {
 					<strong>Publicações</strong>
 					<small>{repos.length} publicações</small>
 				</PageTitle>
-				<SearchForm>
-					<input type="text" placeholder='Buscar conteúdo'/>
+				<SearchForm onSubmit={handleSubmit(handleSearchPost)}>
+					<input type="text" placeholder='Buscar conteúdo' {...register('query')}/>
 				</SearchForm>
 				<PostsList>
 					{repos.map((repo) => {

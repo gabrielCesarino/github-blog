@@ -6,9 +6,16 @@ export const Container = styled.div`
     height: 16rem;
     line-height: 1.6;
     border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+
     p {
         color: ${props => props.theme['base-text']};
         margin-top: 1rem;
+    }
+    
+    &:hover{
+        background-color: ${props => props.theme['base-label']};
     }
 `;
 
