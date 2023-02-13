@@ -86,6 +86,8 @@ export const Content = styled.main`
     display: flex;
     flex-direction: column;
     width: 100%;
+
+    padding-bottom: 2rem;
 `;
 
 export const PageTitle = styled.div`

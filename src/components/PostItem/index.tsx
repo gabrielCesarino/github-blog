@@ -1,24 +1,38 @@
 import { Container, PostInfo, PostDescription } from './styles';
+import { formatDistanceToNow } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
-export function PostItem() {
+interface RepoProps {
+	body: string,
+	id: number,
+	title: string,
+	created_at: Date,
+}
+
+interface PostProps {
+	repo: RepoProps
+}
+
+
+export function PostItem({ repo }:  PostProps) {
+	const time = formatDistanceToNow(new Date(repo.created_at), {
+		locale: ptBR,
+		addSuffix: true,
+	});
+	
 	return (
 		<Container>
 			<PostInfo>
 				<strong>
-                    Javascript data types and data structures
+					{repo.title}
 				</strong>
 				<small>
-                    Há 1 dia
+					{time}
 				</small>
 			</PostInfo>
 			<PostDescription>
 				<p>
-                    Programming languages all have built-in data structures, but
-                    these often differ from one language to another. This article
-                    attempts to list the built-in data structures available in
-                    JavaScript and what properties they have. These can be used
-                    to build other data structures. Wherever possible, comparisons
-                    with other languages are drawn.
+					{repo.body}
 				</p>
 			</PostDescription>
 		</Container>

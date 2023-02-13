@@ -12,7 +12,7 @@ import {
 	SearchForm,
 	PostsList
 } from './styles';
-import avatarImg from '../../assets/avatar.png';
+
 import githubIcon from '../../assets/github.svg';
 import socialIcon from '../../assets/social.svg';
 import buildIcon from '../../assets/build.svg';
@@ -28,14 +28,34 @@ interface UserProps {
 	login: string,
 }
 
+interface RepoProps {
+	body: string,
+	id: number,
+	title: string,
+	created_at: Date,
+}
+
 export function Home() {
 	const [user, setUser] = useState<UserProps>();
+	const [repos, setRepos] = useState<RepoProps[]>([]);
 	const username = 'gabrielcesarino';
+
+	async function fetchRepos(){
+		const response = await api.get(`/search/issues?q=repo:${username}/github-blog-posts`);
+		const data = await response.data;
+		
+		setRepos(data.items);
+	}
 
 	useEffect(() => {
 		api.get(`/users/${username}`)
 			.then(response => setUser(response.data));
+
+		fetchRepos();
 	}, []);
+	
+	
+	console.log(repos);
 
 	return (
 		<Container>
@@ -72,20 +92,19 @@ export function Home() {
 			<Content>
 				<PageTitle>
 					<strong>Publicações</strong>
-					<small>6 publicações</small>
+					<small>{repos.length} publicações</small>
 				</PageTitle>
 				<SearchForm>
 					<input type="text" placeholder='Buscar conteúdo'/>
 				</SearchForm>
 				<PostsList>
-					<PostItem />
-					<PostItem />
-					<PostItem />
-					<PostItem />
+					{repos.map((repo) => {
+						return (
+							<PostItem repo={repo} key={repo.id}/>
+						);
+					})}
 				</PostsList>
 			</Content>
-
-
 		</Container>
 	);
 }
