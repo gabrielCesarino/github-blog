@@ -19,6 +19,7 @@ import buildIcon from '../../assets/build.svg';
 import redirectIcon from '../../assets/redirect.svg';
 import { api } from '../../api/api';
 import { useForm } from 'react-hook-form';
+import { NavLink } from 'react-router-dom';
 
 interface UserProps {
 	avatar_url: string,
@@ -34,6 +35,7 @@ interface RepoProps {
 	id: number,
 	title: string,
 	created_at: Date,
+	number: number,
 }
 
 interface searchForm {
@@ -117,7 +119,9 @@ export function Home() {
 				<PostsList>
 					{repos.map((repo) => {
 						return (
-							<PostItem repo={repo} key={repo.id}/>
+							<NavLink to={`/post/${repo.number}`} key={repo.id}>
+								<PostItem repo={repo}/>
+							</NavLink>
 						);
 					})}
 				</PostsList>

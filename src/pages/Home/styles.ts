@@ -126,4 +126,8 @@ export const PostsList = styled.div`
     grid-template-columns: 1fr 1fr;
     margin-top: 3rem;
     gap: 2rem;
+
+    & > a {
+        text-decoration: none;
+    }
 `;

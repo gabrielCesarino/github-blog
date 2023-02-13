@@ -5,13 +5,14 @@ import { Home } from './pages/Home';
 import { Post } from './pages/Post';
 
 export function Router() {
-	const { postId } = useParams();
+
+	const { number } = useParams();
 
 	return (
 		<Routes>
 			<Route path='/' element={<DefaultLayout />}>
 				<Route index element={<Home />}/>
-				<Route path='/post/:postId' element={<Post />} />
+				<Route path='/post/:number' element={<Post />} />
 			</Route>
 		</Routes>
 	);
